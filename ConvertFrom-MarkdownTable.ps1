@@ -27,7 +27,7 @@ function ConvertFrom-MarkdownTable(){
 	)
 	
 	# Trim any extra whitespace, except newlines, around pipe characters
-	$MarkdownString = $MarkdownString -replace '[`t ]*\|[`t ]*', '|'
+	$MarkdownString = $MarkdownString -replace '[\t ]*\|[\t ]*', '|'
 	
 	# Replace the pipes at the start and end of each line
 	$MarkdownString = $MarkdownString -replace "(?m)^\|", '' -replace "(?m)\|$", ''
