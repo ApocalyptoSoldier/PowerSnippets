@@ -32,3 +32,14 @@ Using the [Scripting.FileSystemObject](https://learn.microsoft.com/en-us/office/
 $fso = New-Object -ComObject Scripting.FileSystemObject
 $fso.GetFolder("$($env:USERPROFILE)\Downloads").Size
 ```
+
+Pretty print xml
+```PowerShell
+$xmlDoc = [xml]"<root><element1>text</element1><element2>text2</element2></root>"
+$stringWriter = New-Object System.IO.StringWriter
+$xmlWriter = New-Object System.Xml.XmlTextwriter($stringWriter)
+$xmlWriter.Formatting = [System.Xml.Formatting]::Indented
+$xmlDoc.WriteContentTo($xmlWriter)
+$stringWriter.ToString()
+```
+You can also use Formatting = 'None' to minify the xml.
