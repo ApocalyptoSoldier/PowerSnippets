@@ -23,3 +23,12 @@ The simple way
 ```
 The more complex and reliable way involves calling the [SHGetKnownFolderPath](https://learn.microsoft.com/en-us/windows/win32/api/shlobj_core/nf-shlobj_core-shgetknownfolderpath) api
 See ``Get-ShellFolder`` for an example.
+
+
+Faster way to get folder size
+Recursing through all files in a folder and adding up their individual sizes can be quite slow.
+Using the [Scripting.FileSystemObject](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/filesystemobject-object) com object can be much faster
+```PowerShell
+$fso = New-Object -ComObject Scripting.FileSystemObject
+$fso.GetFolder("$($env:USERPROFILE)\Downloads").Size
+```
