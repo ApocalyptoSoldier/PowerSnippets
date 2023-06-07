@@ -13,3 +13,13 @@ Get the path to a windows special folder
 ```
 
 See ``Get-SpecialFolder`` for an example
+
+
+
+Get the path to a shell folder, eg. shell:Startup or shell:Downloads
+The simple way
+```PowerShell
+(New-Object -ComObject Shell.Application).Namespace('shell:Startup').Self.Path
+```
+The more complex and reliable way involves calling the [SHGetKnownFolderPath](https://learn.microsoft.com/en-us/windows/win32/api/shlobj_core/nf-shlobj_core-shgetknownfolderpath) api
+See ``Get-ShellFolder`` for an example.
