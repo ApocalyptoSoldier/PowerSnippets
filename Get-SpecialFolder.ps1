@@ -1,6 +1,6 @@
 <#
 .Synopsis 
-	Gets the paths to windows special folders, eg. Desktop, Downloads, MyDocuments
+	Gets the paths to windows special folders, eg. Desktop, MyDocuments
 .Parameter Name
 	Filters results by special folder names
 .Parameter ListAvailable
@@ -11,10 +11,10 @@
 	Name        Path
 	----        ----
 	MyComputer
-	MyDocuments C:\Users\heinv\OneDrive\Documents
-	MyMusic     C:\Users\heinv\Music
-	MyPictures  C:\Users\heinv\OneDrive\Pictures
-	MyVideos    C:\Users\heinv\Videos
+	MyDocuments C:\Users\user\OneDrive\Documents
+	MyMusic     C:\Users\user\Music
+	MyPictures  C:\Users\user\OneDrive\Pictures
+	MyVideos    C:\Users\user\Videos
 #>
 Function Get-SpecialFolder()
 {
