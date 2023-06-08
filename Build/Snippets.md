@@ -43,3 +43,10 @@ $xmlDoc.WriteContentTo($xmlWriter)
 $stringWriter.ToString()
 ```
 You can also use Formatting = 'None' to minify the xml.
+
+# Get installed software locations
+```PowerShell
+Get-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" | Select DisplayName, InstallLocation | ? DisplayName -like '7-Zip*'
+Get-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" | Select DisplayName, InstallLocation | ? DisplayName -like 'Discord*'
+```
+This approach isn't bulletproof, InstallLocation might be blank, but it could be possible to deduce the location by looking at the other registry values.

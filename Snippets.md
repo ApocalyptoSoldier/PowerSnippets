@@ -1,4 +1,12 @@
-# Table of Content+ [Resolve a path so it looks exactly like windows would show it, including slashes and case](#resolve-a-path-so-it-looks-exactly-like-windows-would-show-it-including-slashes-and-case)+ [Get the path to a windows special folder](#get-the-path-to-a-windows-special-folder)+ [Get the path to a shell folder, eg. shell:Startup or shell:Downloads](#get-the-path-to-a-shell-folder-eg-shellstartup-or-shelldownloads)+ [Faster way to get folder size](#faster-way-to-get-folder-size)+ [Pretty print xml](#pretty-print-xml)# Resolve a path so it looks exactly like windows would show it, including slashes and case
+# Table of Content
++ [Resolve a path so it looks exactly like windows would show it, including slashes and case](#resolve-a-path-so-it-looks-exactly-like-windows-would-show-it-including-slashes-and-case)
++ [Get the path to a windows special folder](#get-the-path-to-a-windows-special-folder)
++ [Get the path to a shell folder, eg. shell:Startup or shell:Downloads](#get-the-path-to-a-shell-folder-eg.shellstartup-or-shelldownloads)
++ [Faster way to get folder size](#faster-way-to-get-folder-size)
++ [Pretty print xml](#pretty-print-xml)
++ [Get installed software locations](#get-installed-software-locations)
+
+# Resolve a path so it looks exactly like windows would show it, including slashes and case
 
 ```PowerShell
 $path = (Get-Item HKCU:\Software\Valve\Steam\).GetValue("SteamPath") # looks like "c:/program files (x86)/steam"
@@ -43,3 +51,11 @@ $xmlDoc.WriteContentTo($xmlWriter)
 $stringWriter.ToString()
 ```
 You can also use Formatting = 'None' to minify the xml.
+
+# Get installed software locations
+```PowerShell
+Get-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" | Select DisplayName, InstallLocation | ? DisplayName -like '7-Zip*'
+Get-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" | Select DisplayName, InstallLocation | ? DisplayName -like 'Discord*'
+```
+This approach isn't bulletproof, InstallLocation might be blank, but it could be possible to deduce the location by looking at the other registry values.
+
